@@ -1,4 +1,14 @@
-export var TokenType = {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _TokenType;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var TokenType = exports.TokenType = (_TokenType = {
 
     // Keywords
     Int: 'int',
@@ -60,10 +70,6 @@ export var TokenType = {
     // Identifier and Literals
     Identifier: 'identifier',
     Integer: 'integer',
-    Decimal: 'decimal',
-    String: 'string',
-
-    // Special token types
-    EndOfInput: 'EndOfInput',
-    Unrecognized: 'Unrecognized'
-};
+    Decimal: 'decimal'
+}, _defineProperty(_TokenType, 'String', 'string'), _defineProperty(_TokenType, 'EndOfInput', 'EndOfInput'), _defineProperty(_TokenType, 'Unrecognized', 'Unrecognized'), _TokenType);
+//# sourceMappingURL=tokentype.js.map

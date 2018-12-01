@@ -23,5 +23,9 @@
     "lexer"
   ],
   "author": "Faiçal Tchirou",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ftchirou/blink-lexer/issues"
+  },
+  "homepage": "https://github.com/ftchirou/blink-lexer#readme"
 }

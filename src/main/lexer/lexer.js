@@ -19,6 +19,8 @@ export class Lexer {
     }
 
     nextToken() {
-        // TODO: Write your code here. :)
+        for( something in TokenType){
+            console.log(something);
+        }
     }
 }
