@@ -8,9 +8,8 @@ const exps = [
     /^(==|>|>=|<|<=|!=)/,       // comparisson operators
     /^(&&|!|\|\|)/,             // boolean operators
     /^(,|{|}|\[|\]|\(|\)|;)/,   // delimiters
-    /^\d+/,                     // integer
-    /^[+-]?\d+(\.\d+)?/,        // decimal
-    /^"[\w ]+"/                 // string literal
+    /^[+-]?\d+(\.\d+)?/,        // number
+    /^["|'][\w ]+["|']/         // string literal
 ]
 
 export class Lexer {
@@ -49,7 +48,9 @@ export class Lexer {
                     return token;
                 }
             }
-            return new Token(TokenType.Unrecognized, undefined, this.line, this.column);
+
+            ++this.column;
+            return new Token(TokenType.Unrecognized, this.input[this.column - 1], this.line, this.column);
         }
     }
 
@@ -97,8 +98,13 @@ export class Lexer {
             }
         }
 
-        if (expId == 6) return new Token(TokenType.Integer, lexeme, this.line, this.column);
-        if (expId == 7) return new Token(TokenType.Decimal, lexeme, this.line, this.column);
-        if (expId == 8) return new Token(TokenType.String, lexeme, this.line, this.column);
+        if (expId == 6) {
+            if (lexeme.match(/^\d+$/))
+                return new Token(TokenType.Integer, lexeme, this.line, this.column)
+            else
+                return new Token(TokenType.Decimal, lexeme, this.line, this.column);
+        }
+
+        if (expId == 7) return new Token(TokenType.StringLiteral, lexeme, this.line, this.column);
     }
 }

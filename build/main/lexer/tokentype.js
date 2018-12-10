@@ -71,7 +71,7 @@ var TokenType = exports.TokenType = {
     Identifier: 'identifier',
     Integer: 'integer',
     Decimal: 'decimal',
-    String: 'string',
+    StringLiteral: 'stringLiteral',
 
     // Special token types
     EndOfInput: 'EndOfInput',

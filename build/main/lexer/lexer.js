@@ -19,9 +19,8 @@ var exps = [/^[_a-zA-Z][_a-zA-Z0-9]*/, // identifiers, keywords
 /^(==|>|>=|<|<=|!=)/, // comparisson operators
 /^(&&|!|\|\|)/, // boolean operators
 /^(,|{|}|\[|\]|\(|\)|;)/, // delimiters
-/^\d+/, // integer
-/^[+-]?\d+(\.\d+)?/, // decimal
-/^"[\w ]+"/ // string literal
+/^[+-]?\d+(\.\d+)?/, // number
+/^["|'][\w ]+["|']/ // string literal
 ];
 
 var Lexer = exports.Lexer = function () {
@@ -63,7 +62,9 @@ var Lexer = exports.Lexer = function () {
                         return token;
                     }
                 }
-                return new _token.Token(_tokentype.TokenType.Unrecognized, undefined, this.line, this.column);
+
+                ++this.column;
+                return new _token.Token(_tokentype.TokenType.Unrecognized, this.input[this.column - 1], this.line, this.column);
             }
         }
     }, {
@@ -106,9 +107,11 @@ var Lexer = exports.Lexer = function () {
                 }
             }
 
-            if (expId == 6) return new _token.Token(_tokentype.TokenType.Integer, lexeme, this.line, this.column);
-            if (expId == 7) return new _token.Token(_tokentype.TokenType.Decimal, lexeme, this.line, this.column);
-            if (expId == 8) return new _token.Token(_tokentype.TokenType.String, lexeme, this.line, this.column);
+            if (expId == 6) {
+                if (lexeme.match(/^\d+$/)) return new _token.Token(_tokentype.TokenType.Integer, lexeme, this.line, this.column);else return new _token.Token(_tokentype.TokenType.Decimal, lexeme, this.line, this.column);
+            }
+
+            if (expId == 7) return new _token.Token(_tokentype.TokenType.StringLiteral, lexeme, this.line, this.column);
         }
     }]);
 
