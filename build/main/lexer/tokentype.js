@@ -3,73 +3,78 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var TokenType = exports.TokenType = {
 
-var _TokenType;
+    keywords: {
+        Int: 'int',
+        Const: 'const',
+        Double: 'double',
+        Char: 'char',
+        String: 'string',
+        If: 'if',
+        Else: 'else',
+        True: 'true',
+        False: 'false',
+        Null: 'null',
+        Return: 'return',
+        While: 'while',
+        For: 'for',
+        Break: 'break',
+        Continue: 'continue',
+        Void: 'void'
+    },
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+    assignment: {
+        DivEqual: '/=',
+        Equal: '=',
+        MinusEqual: '-=',
+        ModuloEqual: '%=',
+        PlusEqual: '+=',
+        TimesEqual: '*='
+    },
 
-var TokenType = exports.TokenType = (_TokenType = {
+    arithmetic: {
+        Div: '/',
+        Modulo: '%',
+        Minus: '-',
+        Plus: '+',
+        Times: '*'
+    },
 
-    // Keywords
-    Int: 'int',
-    Const: 'const',
-    Double: 'double',
-    Char: 'char',
-    String: 'string',
-    If: 'if',
-    Else: 'else',
-    True: 'true',
-    False: 'false',
-    Null: 'null',
-    Return: 'return',
-    While: 'while',
-    For: 'for',
-    Break: 'break',
-    Continue: 'continue',
-    Void: 'void',
+    comparisson: {
+        DoubleEqual: '==',
+        Greater: '>',
+        GreaterOrEqual: '>=',
+        Less: '<',
+        LessOrEqual: '<=',
+        NotEqual: '!='
+    },
 
-    // Assignment operators
-    DivEqual: '/=',
-    Equal: '=',
-    MinusEqual: '-=',
-    ModuloEqual: '%=',
-    PlusEqual: '+=',
-    TimesEqual: '*=',
+    boolean: {
+        And: '&&',
+        Not: '!',
+        Or: '||'
+    },
 
-    // Arithmetic operators
-    Div: '/',
-    Modulo: '%',
-    Minus: '-',
-    Plus: '+',
-    Times: '*',
-
-    // Comparison operators
-    DoubleEqual: '==',
-    Greater: '>',
-    GreaterOrEqual: '>=',
-    Less: '<',
-    LessOrEqual: '<=',
-    NotEqual: '!=',
-
-    // Boolean operators
-    And: '&&',
-    Not: '!',
-    Or: '||',
-
-    // Delimiters
-    Colon: ':',
-    Comma: ',',
-    LeftBrace: '{',
-    LeftBracket: '[',
-    LeftParen: '(',
-    Newline: '\n',
-    RightBrace: '}',
-    RightBracket: ']',
-    RightParen: ')',
+    delimiters: {
+        Comma: ',',
+        LeftBrace: '{',
+        LeftBracket: '[',
+        LeftParen: '(',
+        RightBrace: '}',
+        RightBracket: ']',
+        RightParen: ')',
+        Semicolon: ';'
+    },
 
     // Identifier and Literals
     Identifier: 'identifier',
     Integer: 'integer',
-    Decimal: 'decimal'
-}, _defineProperty(_TokenType, 'String', 'string'), _defineProperty(_TokenType, 'EndOfInput', 'EndOfInput'), _defineProperty(_TokenType, 'Unrecognized', 'Unrecognized'), _TokenType);
+    Decimal: 'decimal',
+    String: 'string',
+
+    // Special token types
+    EndOfInput: 'EndOfInput',
+    Unrecognized: 'Unrecognized'
+};
 //# sourceMappingURL=tokentype.js.map

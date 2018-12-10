@@ -1,61 +1,66 @@
 export var TokenType = {
 
-    // Keywords
-    Int: 'int',
-    Const: 'const',
-    Double: 'double',
-    Char: 'char',
-    String: 'string',
-    If: 'if',
-    Else: 'else',
-    True: 'true',
-    False: 'false',
-    Null: 'null',
-    Return: 'return',
-    While: 'while',
-    For: 'for',
-    Break: 'break',
-    Continue: 'continue',
-    Void: 'void',
+    keywords: {
+        Int: 'int',
+        Const: 'const',
+        Double: 'double',
+        Char: 'char',
+        String: 'string',
+        If: 'if',
+        Else: 'else',
+        True: 'true',
+        False: 'false',
+        Null: 'null',
+        Return: 'return',
+        While: 'while',
+        For: 'for',
+        Break: 'break',
+        Continue: 'continue',
+        Void: 'void'
+    },
 
-    // Assignment operators
-    DivEqual: '/=',
-    Equal: '=',
-    MinusEqual: '-=',
-    ModuloEqual: '%=',
-    PlusEqual: '+=',
-    TimesEqual: '*=',
+    assignment: {
+        DivEqual: '/=',
+        Equal: '=',
+        MinusEqual: '-=',
+        ModuloEqual: '%=',
+        PlusEqual: '+=',
+        TimesEqual: '*='
+    },
 
-    // Arithmetic operators
-    Div: '/',
-    Modulo: '%',
-    Minus: '-',
-    Plus: '+',
-    Times: '*',
+    arithmetic: {
+        Div: '/',
+        Modulo: '%',
+        Minus: '-',
+        Plus: '+',
+        Times: '*'
+    },
 
-    // Comparison operators
-    DoubleEqual: '==',
-    Greater: '>',
-    GreaterOrEqual: '>=',
-    Less: '<',
-    LessOrEqual: '<=',
-    NotEqual: '!=',
+    comparisson: {
+        DoubleEqual: '==',
+        Greater: '>',
+        GreaterOrEqual: '>=',
+        Less: '<',
+        LessOrEqual: '<=',
+        NotEqual: '!='
+    },
 
-    // Boolean operators
-    And: '&&',
-    Not: '!',
-    Or: '||',
+    boolean: {
+        And: '&&',
+        Not: '!',
+        Or: '||'
+    },
 
-    // Delimiters
-    Colon: ':',
-    Comma: ',',
-    LeftBrace: '{',
-    LeftBracket: '[',
-    LeftParen: '(',
-    Newline: '\n',
-    RightBrace: '}',
-    RightBracket: ']',
-    RightParen: ')',
+    delimiters: {
+        Comma: ',',
+        LeftBrace: '{',
+        LeftBracket: '[',
+        LeftParen: '(',
+        RightBrace: '}',
+        RightBracket: ']',
+        RightParen: ')',
+        Semicolon: ';'
+    },
 
     // Identifier and Literals
     Identifier: 'identifier',

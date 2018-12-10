@@ -13,11 +13,24 @@ var _tokentype = require('./tokentype');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var exps = [/^[_a-zA-Z][_a-zA-Z0-9]*/, // identifiers, keywords
+/^(=|\/=|-=|%=|\+=|\*=)/, // assignment operators
+/^(\/|%|-|\+|\*)/, // arithmetic operators
+/^(==|>|>=|<|<=|!=)/, // comparisson operators
+/^(&&|!|\|\|)/, // boolean operators
+/^(,|{|}|\[|\]|\(|\)|;)/, // delimiters
+/^\d+/, // integer
+/^[+-]?\d+(\.\d+)?/, // decimal
+/^"[\w ]+"/ // string literal
+];
+
 var Lexer = exports.Lexer = function () {
-    function Lexer(input) {
+    function Lexer(input, line) {
         _classCallCheck(this, Lexer);
 
         this.input = input;
+        this.line = line;
+        this.column = 0;
     }
 
     _createClass(Lexer, [{
@@ -36,9 +49,66 @@ var Lexer = exports.Lexer = function () {
     }, {
         key: 'nextToken',
         value: function nextToken() {
-            for (something in _tokentype.TokenType) {
-                console.log(something);
+            if (this.column == this.input.length) return new _token.Token(_tokentype.TokenType.EndOfInput, undefined, this.line, this.column);else {
+                var substr = this.input.slice(this.column);
+                var spaces = substr.match(/^\s+/);
+                if (spaces) this.column += spaces.length, substr = this.input.slice(this.column);
+
+                for (var i = 0; i < exps.length; ++i) {
+                    var lexeme = substr.match(exps[i]);
+                    if (lexeme) {
+                        lexeme = lexeme[0];
+                        var token = this.createToken(lexeme, i);
+                        this.column += lexeme.length;
+                        return token;
+                    }
+                }
+                return new _token.Token(_tokentype.TokenType.Unrecognized, undefined, this.line, this.column);
             }
+        }
+    }, {
+        key: 'createToken',
+        value: function createToken(lexeme, expId) {
+            if (expId == 0) {
+                for (var type in _tokentype.TokenType.keywords) {
+                    if (lexeme == _tokentype.TokenType.keywords[type]) return new _token.Token(_tokentype.TokenType.keywords[type], lexeme, this.line, this.column);
+                }
+                return new _token.Token(_tokentype.TokenType.Identifier, lexeme, this.line, this.column);
+            }
+
+            if (expId == 1) {
+                for (var _type in _tokentype.TokenType.assignment) {
+                    if (lexeme == _tokentype.TokenType.assignment[_type]) return new _token.Token(_tokentype.TokenType.assignment[_type], lexeme, this.line, this.column);
+                }
+            }
+
+            if (expId == 2) {
+                for (var _type2 in _tokentype.TokenType.arithmetic) {
+                    if (lexeme == _tokentype.TokenType.arithmetic[_type2]) return new _token.Token(_tokentype.TokenType.arithmetic[_type2], lexeme, this.line, this.column);
+                }
+            }
+
+            if (expId == 3) {
+                for (var _type3 in _tokentype.TokenType.comparisson) {
+                    if (lexeme == _tokentype.TokenType.comparisson[_type3]) return new _token.Token(_tokentype.TokenType.comparisson[_type3], lexeme, this.line, this.column);
+                }
+            }
+
+            if (expId == 4) {
+                for (var _type4 in _tokentype.TokenType.boolean) {
+                    if (lexeme == _tokentype.TokenType.boolean[_type4]) return new _token.Token(_tokentype.TokenType.boolean[_type4], lexeme, this.line, this.column);
+                }
+            }
+
+            if (expId == 5) {
+                for (var _type5 in _tokentype.TokenType.delimiters) {
+                    if (lexeme == _tokentype.TokenType.delimiters[_type5]) return new _token.Token(_tokentype.TokenType.delimiters[_type5], lexeme, this.line, this.column);
+                }
+            }
+
+            if (expId == 6) return new _token.Token(_tokentype.TokenType.Integer, lexeme, this.line, this.column);
+            if (expId == 7) return new _token.Token(_tokentype.TokenType.Decimal, lexeme, this.line, this.column);
+            if (expId == 8) return new _token.Token(_tokentype.TokenType.String, lexeme, this.line, this.column);
         }
     }]);
 
