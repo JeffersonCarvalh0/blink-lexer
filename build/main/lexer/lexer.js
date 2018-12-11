@@ -35,6 +35,7 @@ var Lexer = exports.Lexer = function () {
     _createClass(Lexer, [{
         key: 'tokenize',
         value: function tokenize() {
+            this.column = 0;
             var tokens = [];
             var token = this.nextToken();
 

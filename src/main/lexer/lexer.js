@@ -20,6 +20,7 @@ export class Lexer {
     }
 
     tokenize() {
+        this.column = 0;
         let tokens = [];
         let token = this.nextToken();
 
