@@ -1,5 +1,4 @@
 export var TokenType = {
-
     keywords: {
         Int: 'int',
         Const: 'const',

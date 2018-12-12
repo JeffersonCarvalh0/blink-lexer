@@ -49,7 +49,7 @@ var Lexer = exports.Lexer = function () {
     }, {
         key: 'nextToken',
         value: function nextToken() {
-            if (this.column == this.input.length) return new _token.Token(_tokentype.TokenType.EndOfInput, undefined, this.line, this.column);else {
+            if (this.column >= this.input.length) return new _token.Token(_tokentype.TokenType.EndOfInput, undefined, this.line, this.column);else {
                 var substr = this.input.slice(this.column);
                 var spaces = substr.match(/^\s+/);
                 if (spaces) this.column += spaces.length, substr = this.input.slice(this.column);

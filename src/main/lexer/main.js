@@ -1,25 +1,18 @@
 import { Lexer } from './lexer'
 import { Parser } from './parser'
 
-let source = `
-int x;
-int y;
-
-x = read();
-y = read();
-
-if x > y {
-writeln(x);
-} else {
-writeln(y);
-}
-`
+let source = `z = ((x + y) - ((x + y) / (x - y))) + ((x + y) / (x - y))`;
 
 let lines = source.split('\n');
 let tokens = [];
-for (let i = 1; i < lines.length; ++i) {
-    let lexer = new Lexer(lines[i], i);
-    if (lines[i]) tokens.push(lexer.tokenize());
+for (let i = 0; i < lines.length; ++i) {
+    let lexer = new Lexer(lines[i], i + 1);
+    let curTokens = lexer.tokenize();
+    if (lines[i]) {
+        for (let j = 0; j < curTokens.length; ++j) tokens.push(curTokens[j]);
+    }
 }
 
-console.log(tokens);
+let parser = new Parser(tokens);
+parser.parse();
+console.log(parser.errors);

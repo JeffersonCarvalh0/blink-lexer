@@ -33,7 +33,7 @@ export class Lexer {
     }
 
     nextToken() {
-        if (this.column == this.input.length)
+        if (this.column >= this.input.length)
             return new Token(TokenType.EndOfInput, undefined, this.line, this.column);
         else {
             let substr = this.input.slice(this.column);

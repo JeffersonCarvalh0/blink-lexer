@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var TokenType = exports.TokenType = {
-
     keywords: {
         Int: 'int',
         Const: 'const',
